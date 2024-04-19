@@ -103,7 +103,7 @@ func TestGeoIPFromRemoteAddr(t *testing.T) {
 	req.RemoteAddr = fmt.Sprintf("%s:9999", ValidIP)
 	instance.ServeHTTP(httptest.NewRecorder(), req)
 	assertHeader(t, req, mw.CountryHeader, "DE")
-	assertHeader(t, req, mw.RegionHeader, "BY")
+	assertHeader(t, req, mw.RegionHeader, "Bavaria")
 	assertHeader(t, req, mw.CityHeader, "Munich")
 	assertHeader(t, req, mw.IPAddressHeader, ValidIP)
 
@@ -138,7 +138,7 @@ func TestGeoIPFromXForwardedFor(t *testing.T) {
 	req.Header.Set("X-Forwarded-For", ValidAlternateIP)
 	instance.ServeHTTP(httptest.NewRecorder(), req)
 	assertHeader(t, req, mw.CountryHeader, "DE")
-	assertHeader(t, req, mw.RegionHeader, "BY")
+	assertHeader(t, req, mw.RegionHeader, "Bavaria")
 	assertHeader(t, req, mw.CityHeader, "Munich")
 	assertHeader(t, req, mw.IPAddressHeader, ValidAlternateIP)
 
@@ -147,7 +147,7 @@ func TestGeoIPFromXForwardedFor(t *testing.T) {
 	req.Header.Set("X-Forwarded-For", ValidAlternateIP+",188.193.88.100")
 	instance.ServeHTTP(httptest.NewRecorder(), req)
 	assertHeader(t, req, mw.CountryHeader, "DE")
-	assertHeader(t, req, mw.RegionHeader, "BY")
+	assertHeader(t, req, mw.RegionHeader, "Bavaria")
 	assertHeader(t, req, mw.CityHeader, "Munich")
 	assertHeader(t, req, mw.IPAddressHeader, ValidAlternateIP)
 
