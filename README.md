@@ -31,7 +31,7 @@ The following snippet should be added to `values.yaml`:
 experimental:
   plugins:
     geoip2:
-      moduleName: github.com/traefik-plugins/traefikgeoip2
+      moduleName: github.com/aatrubilin/traefikgeoip2
       version: v0.22.0
 deployment:
   additionalVolumes:
