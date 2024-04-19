@@ -8,7 +8,7 @@ import (
 )
 
 // Unknown constant for undefined data.
-const Unknown = "XX"
+const Unknown = ""
 
 // DefaultDBPath default GeoIP2 database path.
 const DefaultDBPath = "GeoLite2-Country.mmdb"
@@ -50,7 +50,7 @@ func CreateCityDBLookup(rdr *geoip2.CityReader) LookupGeoIP2 {
 			retval.city = city
 		}
 		if rec.Subdivisions != nil {
-			retval.region = rec.Subdivisions[0].ISOCode
+			retval.region = rec.Subdivisions[0].Names["en"]
 		}
 		return &retval, nil
 	}
